@@ -38,6 +38,3 @@ TARGET_INCLUDE_DIRECTORIES(utils
 
 TARGET_LINK_LIBRARIES(utils PRIVATE simulator ${OpenCV_LIBS})
 
-if(BUILD_TESTS)
-    add_subdirectory(test)
-endif()

@@ -6,4 +6,4 @@ TARGET_LINK_LIBRARIES (
     PRIVATE utils
     PRIVATE gtest_main)
 
-ADD_GTEST(utils_spec)
+#ADD_GTEST(utils_spec)

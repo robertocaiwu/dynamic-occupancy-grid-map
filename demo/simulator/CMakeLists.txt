@@ -52,6 +52,6 @@ TARGET_INCLUDE_DIRECTORIES(simulator
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/include)
 
-if(BUILD_TESTS)
-    add_subdirectory(test)
-endif()
+# if(BUILD_TESTS)
+#     add_subdirectory(test)
+# endif()

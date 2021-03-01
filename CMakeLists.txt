@@ -94,3 +94,16 @@ target_link_libraries(dogm
 #        LIBRARY DESTINATION lib/dogm
 #        PUBLIC_HEADER DESTINATION include/dogm
 #)
+
+add_subdirectory(demo)
+
+# add_executable(
+#     demo 
+#     demo/main.cpp 
+#     ${SRC_FILES}
+#     )
+
+# target_link_libraries (
+#     demo
+#     ${OpenCV_LIBS}
+# )

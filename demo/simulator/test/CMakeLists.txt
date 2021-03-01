@@ -6,4 +6,4 @@ TARGET_LINK_LIBRARIES (
     PRIVATE simulator
     PRIVATE gtest_main)
 
-ADD_GTEST(simulator_spec)
+#ADD_GTEST(simulator_spec)

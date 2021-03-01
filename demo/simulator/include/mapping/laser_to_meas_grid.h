@@ -5,7 +5,7 @@
 #ifndef LASER_TO_MEAS_GRID_H
 #define LASER_TO_MEAS_GRID_H
 
-#include "dogm/dogm_types.h"
+#include "dogm_types.h"
 #include "mapping/opengl/renderer.h"
 #include <memory>
 #include <vector>
