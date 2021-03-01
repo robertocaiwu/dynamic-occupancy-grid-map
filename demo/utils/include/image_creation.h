@@ -6,7 +6,7 @@
 #define IMAGE_CREATION_H
 
 #include "dbscan.h"
-#include "dogm/dogm.h"
+#include "dogm.h"
 
 #include <opencv2/opencv.hpp>
 

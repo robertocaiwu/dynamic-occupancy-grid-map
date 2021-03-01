@@ -3,7 +3,7 @@
 // See accompanying LICENSE file for detailed information
 
 #include "dbscan.h"
-#include "dogm/dogm_types.h"
+#include "dogm_types.h"
 
 #include <algorithm>
 #include <cmath>
