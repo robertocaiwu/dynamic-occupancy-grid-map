@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 // See accompanying LICENSE file for detailed information
 
-#include "dogm/dogm_types.h"
+#include "dogm_types.h"
 #include "mapping/kernel/measurement_grid.h"
 
 #include <cuda_runtime.h>

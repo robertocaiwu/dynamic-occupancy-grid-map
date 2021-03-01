@@ -3,7 +3,7 @@
 // See accompanying LICENSE file for detailed information
 
 #include "mapping/opengl/texture.h"
-#include "dogm/cuda_utils.h"
+#include "cuda_utils.h"
 
 #include <cstdio>
 #include <memory.h>
