@@ -2,20 +2,20 @@
 // SPDX-License-Identifier: MIT
 // See accompanying LICENSE file for detailed information
 
-#include "dogm/common.h"
-#include "dogm/cuda_utils.h"
-#include "dogm/dogm.h"
-#include "dogm/dogm_types.h"
+#include "common.h"
+#include "cuda_utils.h"
+#include "dogm.h"
+#include "dogm_types.h"
 
-#include "dogm/kernel/ego_motion_compensation.h"
-#include "dogm/kernel/init.h"
-#include "dogm/kernel/init_new_particles.h"
-#include "dogm/kernel/mass_update.h"
-#include "dogm/kernel/particle_to_grid.h"
-#include "dogm/kernel/predict.h"
-#include "dogm/kernel/resampling.h"
-#include "dogm/kernel/statistical_moments.h"
-#include "dogm/kernel/update_persistent_particles.h"
+#include "dogm/ego_motion_compensation.h"
+#include "dogm/init.h"
+#include "dogm/init_new_particles.h"
+#include "dogm/mass_update.h"
+#include "dogm/particle_to_grid.h"
+#include "dogm/predict.h"
+#include "dogm/resampling.h"
+#include "dogm/statistical_moments.h"
+#include "dogm/update_persistent_particles.h"
 
 #include <thrust/sort.h>
 #include <thrust/transform.h>

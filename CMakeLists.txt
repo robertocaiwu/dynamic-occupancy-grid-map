@@ -19,21 +19,11 @@ if (NOT GLFW3_FOUND)
 	set(GLFW3_LIBRARY "" CACHE FILEPATH "" )
 endif()
 
-if (NOT WIN32)
-	find_package(GLEW)
-endif()
+find_package(GLEW)
 if (NOT GLEW_FOUND)
 	set(GLEW_INCLUDE_DIRS "" CACHE PATH "")
 	set(GLEW_LIBRARIES "" CACHE FILEPATH "" )
 endif()
-
-LIST (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-INCLUDE(GoogleTestDownloadAndBuild)
-
-#if(WIN32)
-#    install(FILES "${OpenCV_DIR}/${OpenCV_ARCH}/${OpenCV_RUNTIME}/bin/opencv_world${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH}d.dll" DESTINATION ${CMAKE_INSTALL_BINARY}/debug CONFIGURATIONS Debug)
-#    install(FILES "${OpenCV_DIR}/${OpenCV_ARCH}/${OpenCV_RUNTIME}/bin/opencv_world${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH}.dll" DESTINATION ${CMAKE_INSTALL_BINARY} CONFIGURATIONS RelWithDebInfo Release)
-#endif(WIN32)
 
 include_directories(
 	SYSTEM
@@ -44,33 +34,33 @@ include_directories(
 )
 
 set(HEADER_FILES
-	include/dogm/kernel/init.h
-	include/dogm/kernel/init_new_particles.h
-	include/dogm/kernel/mass_update.h
-	include/dogm/kernel/particle_to_grid.h
-	include/dogm/kernel/predict.h
-	include/dogm/kernel/resampling.h
-	include/dogm/kernel/statistical_moments.h
-	include/dogm/kernel/update_persistent_particles.h
-	include/dogm/kernel/ego_motion_compensation.h
-	include/dogm/common.h
-	include/dogm/cuda_utils.h
-	include/dogm/dogm.h
-	include/dogm/dogm_types.h
+	include/dogm/init.h
+	include/dogm/init_new_particles.h
+	include/dogm/mass_update.h
+	include/dogm/particle_to_grid.h
+	include/dogm/predict.h
+	include/dogm/resampling.h
+	include/dogm/statistical_moments.h
+	include/dogm/update_persistent_particles.h
+	include/dogm/ego_motion_compensation.h
+	include/common.h
+	include/cuda_utils.h
+	include/dogm.h
+	include/dogm_types.h
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${HEADER_FILES})
 
 set(SRC_FILES
-	src/kernel/init.cu
-	src/kernel/init_new_particles.cu
-	src/kernel/mass_update.cu
-	src/kernel/particle_to_grid.cu
-	src/kernel/predict.cu
-	src/kernel/resampling.cu
-	src/kernel/statistical_moments.cu
-	src/kernel/update_persistent_particles.cu
-	src/kernel/ego_motion_compensation.cu
+	src/dogm/init.cu
+	src/dogm/init_new_particles.cu
+	src/dogm/mass_update.cu
+	src/dogm/particle_to_grid.cu
+	src/dogm/predict.cu
+	src/dogm/resampling.cu
+	src/dogm/statistical_moments.cu
+	src/dogm/update_persistent_particles.cu
+	src/dogm/ego_motion_compensation.cu
 	src/dogm.cu
 )
 
@@ -104,10 +94,5 @@ target_link_libraries(dogm
 #        LIBRARY DESTINATION lib/dogm
 #        PUBLIC_HEADER DESTINATION include/dogm
 #)
-
-if(BUILD_TESTS)
-    enable_testing()
-    add_subdirectory(test)
-endif()
 
 add_subdirectory(demo)
