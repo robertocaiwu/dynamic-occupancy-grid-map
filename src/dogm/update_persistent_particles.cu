@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: MIT
 // See accompanying LICENSE file for detailed information
 
-#include "dogm/common.h"
-#include "dogm/cuda_utils.h"
-#include "dogm/dogm_types.h"
-#include "dogm/kernel/update_persistent_particles.h"
+#include "common.h"
+#include "cuda_utils.h"
+#include "dogm_types.h"
+#include "dogm/update_persistent_particles.h"
 
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>

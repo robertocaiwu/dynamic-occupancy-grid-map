@@ -3,8 +3,8 @@
 // See accompanying LICENSE file for detailed information
 
 #include "clock.h"
-#include "dogm/dogm.h"
-#include "dogm/dogm_types.h"
+#include "dogm.h"
+#include "dogm_types.h"
 #include "image_creation.h"
 #include "mapping/laser_to_meas_grid.h"
 #include "metrics.h"

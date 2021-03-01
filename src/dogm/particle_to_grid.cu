@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: MIT
 // See accompanying LICENSE file for detailed information
 
-#include "dogm/cuda_utils.h"
-#include "dogm/dogm_types.h"
-#include "dogm/kernel/particle_to_grid.h"
+#include "cuda_utils.h"
+#include "dogm_types.h"
+#include "dogm/particle_to_grid.h"
 
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>

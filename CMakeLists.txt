@@ -94,5 +94,3 @@ target_link_libraries(dogm
 #        LIBRARY DESTINATION lib/dogm
 #        PUBLIC_HEADER DESTINATION include/dogm
 #)
-
-add_subdirectory(demo)

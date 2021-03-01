@@ -5,8 +5,8 @@
 #include "image_creation.h"
 #include "color_wheel_adder.h"
 #include "dbscan.h"
-#include "dogm/dogm.h"
-#include "dogm/dogm_types.h"
+#include "dogm.h"
+#include "dogm_types.h"
 
 #include <glm/glm.hpp>
 #include <opencv2/opencv.hpp>
