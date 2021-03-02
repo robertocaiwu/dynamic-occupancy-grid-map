@@ -10,13 +10,14 @@ add_executable(demo
 	main.cpp
 )
 
-target_include_directories(demo PUBLIC ${OpenCV_INCLUDE_DIRS} ${GLM_INCLUDE_DIR})
+target_include_directories(demo PUBLIC ${OpenCV_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIR} ${GLEW_INCLUDE_DIRS} ${GLM_INCLUDE_DIR})
 
 target_link_libraries(demo
 	dogm
 	utils
 	simulator
-	${OpenCV_LIBS}
+    ${OpenCV_LIBS}
+    glfw3
 )
 
 add_subdirectory(utils)

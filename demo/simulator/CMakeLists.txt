@@ -5,18 +5,16 @@ if (NOT GLM_FOUND)
 	set(GLM_INCLUDE_DIR "" CACHE PATH "")
 endif()
 
+find_package(GLEW)
+if (NOT GLEW_FOUND)
+	set(GLEW_INCLUDE_DIRS "" CACHE PATH "")
+	set(GLEW_LIBRARIES "" CACHE FILEPATH "" )
+endif()
+
 find_package(GLFW3)
 if (NOT GLFW3_FOUND)
 	set(GLFW3_INCLUDE_DIR "" CACHE PATH "")
 	set(GLFW3_LIBRARY "" CACHE FILEPATH "" )
-endif()
-
-if (NOT WIN32)
-	find_package(GLEW)
-endif()
-if (NOT GLEW_FOUND)
-	set(GLEW_INCLUDE_DIRS "" CACHE PATH "")
-	set(GLEW_LIBRARIES "" CACHE FILEPATH "" )
 endif()
 
 SET(HEADER_FILES

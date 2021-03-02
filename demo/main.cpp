@@ -32,11 +32,15 @@ int main(int argc, const char** argv)
     grid_params.stddev_velocity = 30.0f;
     grid_params.init_max_velocity = 30.0f;
 
+    std::cout << "1" << std::endl;
+
     LaserMeasurementGrid::Params laser_params;
     laser_params.fov = 120.0f;
     laser_params.max_range = 50.0f;
     laser_params.resolution = grid_params.resolution;  // TODO make independent of grid_params.resolution
     LaserMeasurementGrid grid_generator(laser_params, grid_params.size, grid_params.resolution);
+
+    std::cout << "2" << std::endl;
 
     const int sensor_horizontal_scan_points = 100;
 
@@ -56,6 +60,8 @@ int main(int argc, const char** argv)
     dogm::DOGM grid_map(grid_params);
     initialization_timer.toc(true);
 
+    std::cout << "3" << std::endl;
+
     Simulator simulator(sensor_horizontal_scan_points, laser_params.fov, grid_params.size, ego_velocity);
     if (argc > 1 && argv[1] == std::string("-a"))
     {
@@ -71,10 +77,14 @@ int main(int argc, const char** argv)
         simulator.addVehicle(Vehicle(1.8, glm::vec2(45, 15), glm::vec2(0, 0)));
     }
 
+    std::cout << "4" << std::endl;
+
     SimulationData sim_data = simulator.update(num_simulation_steps, simulation_step_period);
     PrecisionEvaluator precision_evaluator{sim_data, grid_params.resolution, grid_params.size};
     precision_evaluator.registerMetric("Mean absolute error (MAE)", std::make_unique<MAE>());
     precision_evaluator.registerMetric("Root mean squared error (RMSE)", std::make_unique<RMSE>());
+
+    std::cout << "5" << std::endl;
 
     Timer cycle_timer{"DOGM cycle", std::make_unique<Clock>()};
 
@@ -82,21 +92,31 @@ int main(int argc, const char** argv)
     {
         grid_map.updatePose(sim_data[step].ego_pose.x, sim_data[step].ego_pose.y);
 
+        std::cout << "6" << std::endl;
+
         dogm::MeasurementCell* meas_grid = grid_generator.generateGrid(sim_data[step].measurements);
         grid_map.addMeasurementGrid(meas_grid, true);
+
+        std::cout << "7" << std::endl;  
 
         const auto update_grid_caller = [&grid_map](const float dt) { grid_map.updateGrid(dt); };
         cycle_timer.timeFunctionCall(true, update_grid_caller, simulation_step_period);
 
+        std::cout << "8" << std::endl;  
+
         const auto cells_with_velocity =
             computeCellsWithVelocity(grid_map, minimum_occupancy_threshold, minimum_velocity_threshold);
         precision_evaluator.evaluateAndStoreStep(step, cells_with_velocity);
+        std::cout << "9" << std::endl;  
 
         computeAndSaveResultImages(grid_map, cells_with_velocity, step);
+        std::cout << "10" << std::endl;  
     }
 
     cycle_timer.printStatsMs();
     precision_evaluator.printSummary();
+        
+    std::cout << "11" << std::endl;  
 
     return 0;
 }
