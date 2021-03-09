@@ -32,11 +32,18 @@ public:
     std::shared_ptr<Framebuffer> getFrameBuffer() const { return framebuffer; }
 
 private:
+    struct DestroyglfwWin{
+
+        void operator()(GLFWwindow* ptr){
+            glfwDestroyWindow(ptr);
+        }
+
+    }
     int grid_size;
 
     std::unique_ptr<Polygon> polygon;
     std::unique_ptr<Shader> shader;
     std::shared_ptr<Framebuffer> framebuffer;
 
-    std::unique_ptr<GLFWwindow, decltype(&glfwDestroyWindow)> window{nullptr, glfwDestroyWindow};
+    std::unique_ptr<GLFWwindow, DestroyglfwWin> window{nullptr, glfwDestroyWindow};
 };

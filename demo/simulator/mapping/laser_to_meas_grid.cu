@@ -13,7 +13,7 @@ LaserMeasurementGrid::LaserMeasurementGrid(const Params& params, float grid_leng
     int grid_cell_count = grid_size * grid_size;
 
     CHECK_ERROR(cudaMalloc(&meas_grid, grid_cell_count * sizeof(dogm::MeasurementCell)));
-
+    std::cout << "grid_size: " << grid_size << ", fov: " << params.fov << ", grid length: " << grid_length << ", max_range" << params.max_range << std::endl;
     renderer = std::make_unique<Renderer>(grid_size, params.fov, grid_length, params.max_range);
 }
 
