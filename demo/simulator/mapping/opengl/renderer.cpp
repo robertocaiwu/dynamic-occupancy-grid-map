@@ -3,7 +3,7 @@
 // See accompanying LICENSE file for detailed information
 
 #include "mapping/opengl/renderer.h"
-
+#include <iostream>
 #include <cmath>
 
 namespace
@@ -33,29 +33,43 @@ void generateCircleSegmentVertices(std::vector<Vertex>& vertices, float fov, flo
 
 Renderer::Renderer(int grid_size, float fov, float grid_range, float max_range) : grid_size(grid_size)
 {
+    std::cout << "R1" << std::endl;
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
-
-    window.reset(glfwCreateWindow(grid_size, grid_size, "GPU Occupancy Grid Map", nullptr, nullptr));
-    glfwMakeContextCurrent(window.get());
-
+    std::cout << "R2" << std::endl;
+    _window = glfwCreateWindow(grid_size, grid_size, "GPU Occupancy Grid Map", nullptr, nullptr);
+    //window.reset(glfwCreateWindow(grid_size, grid_size, "GPU Occupancy Grid Map", nullptr, nullptr));
+    std::cout << "R2.2" << std::endl;
+    glfwMakeContextCurrent(_window);
+    std::cout << "R3" << std::endl;
     glewExperimental = GL_TRUE;
+    std::cout << "R3.2" << std::endl;
     glewInit();
-
+    std::cout << "R4" << std::endl;
     std::vector<Vertex> vertices;
+
+    GLenum err = glewInit();
+    if (GLEW_OK != err)
+    {
+        /* Problem: glewInit failed, something is seriously wrong. */
+        fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+    }
 
     // center vehicle in the middle
     float range = 2.0f * (max_range / grid_range);
     // generateCircleSegmentVertices(vertices, fov, range, 0.0f, 0.0f);
     generateCircleSegmentVertices(vertices, fov, range, 0.0f, -1.0f);
-
+    std::cout << "R5" << std::endl;
     polygon = std::make_unique<Polygon>(vertices.data(), vertices.size());
+    std::cout << "R5.2" << std::endl;
     shader = std::make_unique<Shader>();
+    std::cout << "R5.3" << std::endl;
     framebuffer = std::make_shared<Framebuffer>(grid_size, grid_size);
+    std::cout << "R6" << std::endl;
 }
 
 Renderer::~Renderer()

@@ -1,13 +1,17 @@
 cmake_minimum_required(VERSION 3.9)
 project(DOGM LANGUAGES CXX CUDA)
 
+if(POLICY CMP0072)
+	cmake_policy(SET CMP0072 NEW)
+endif()
+
 set(CMAKE_CXX_STANDARD 14)
 
 option(BUILD_TESTS "Build unit tests" ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 find_package(OpenGL REQUIRED)
-
+find_package(X11 REQUIRED)
 find_package(GLM)
 if (NOT GLM_FOUND)
 	set(GLM_INCLUDE_DIR "" CACHE PATH "")
@@ -21,8 +25,8 @@ endif()
 
 find_package(GLEW)
 if (NOT GLEW_FOUND)
-	set(GLEW_INCLUDE_DIRS "" CACHE PATH "")
-	set(GLEW_LIBRARIES "" CACHE FILEPATH "" )
+        set(GLEW_INCLUDE_DIRS "" CACHE PATH "")
+        set(GLEW_LIBRARIES "" CACHE FILEPATH "" )
 endif()
 
 include_directories(
@@ -32,6 +36,8 @@ include_directories(
 	${GLEW_INCLUDE_DIRS}
 	${GLM_INCLUDE_DIR}
 )
+#find_package(X11 REQUIRED)
+#find_package(OpenGL REQUIRED)
 
 set(HEADER_FILES
 	include/dogm/init.h
@@ -85,6 +91,7 @@ set_target_properties(dogm PROPERTIES PUBLIC_HEADER "include/dogm.h;include/dogm
 
 target_link_libraries(dogm
 	PRIVATE ${OPENGL_LIBRARY}
+	PRIVATE ${X11_LIBRARIES}
 	PRIVATE ${GLFW3_LIBRARY}
 	PRIVATE ${GLEW_LIBRARIES}
 )

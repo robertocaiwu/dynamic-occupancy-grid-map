@@ -17,6 +17,7 @@ target_link_libraries(demo
 	utils
 	simulator
 	${OpenCV_LIBS}
+	glfw3
 )
 
 add_subdirectory(utils)

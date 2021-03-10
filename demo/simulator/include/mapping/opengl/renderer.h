@@ -37,6 +37,6 @@ private:
     std::unique_ptr<Polygon> polygon;
     std::unique_ptr<Shader> shader;
     std::shared_ptr<Framebuffer> framebuffer;
-
+    GLFWwindow* _window;
     std::unique_ptr<GLFWwindow, decltype(&glfwDestroyWindow)> window{nullptr, glfwDestroyWindow};
 };
